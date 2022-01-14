@@ -15,7 +15,9 @@ x64/
 [Oo]bj/
 *.dll
 *.cache
-obj/
+**obj/
+**bin/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
