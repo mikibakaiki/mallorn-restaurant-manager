@@ -10,7 +10,9 @@ namespace MallornRestaurantManagerApi.Models
         public string Id { get; set; } = null!;
 
         [BsonElement("Name")]
-        public string RestaurantName { get; set; } = null!;
+        public string UserName { get; set; } = null!;
+
+        public string Password { get; set; } = null!;
 
         public User()
         {
