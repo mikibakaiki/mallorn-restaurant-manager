@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -10,9 +11,12 @@ namespace MallornRestaurantManagerApi.Models
         public string Id { get; set; } = null!;
 
         [BsonElement("Name")]
+        [JsonPropertyName("Name")]
         public string UserName { get; set; } = null!;
 
-        public string Password { get; set; } = null!;
+        public byte[]? PasswordHash { get; set; }
+
+        public byte[]? PasswordSalt { get; set; }
 
         public User()
         {

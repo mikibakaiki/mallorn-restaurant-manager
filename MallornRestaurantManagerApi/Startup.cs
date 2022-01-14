@@ -30,6 +30,7 @@ namespace API
         {
             services.Configure<MallornRestaurantDatabaseSettings>(Configuration.GetSection("MallornDatabase"));
             services.AddSingleton<RestaurantsService>();
+            services.AddSingleton<UsersService>();
             services.AddControllers().AddJsonOptions(
                 options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
             services.AddSwaggerGen(c =>
