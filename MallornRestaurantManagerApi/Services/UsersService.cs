@@ -20,6 +20,10 @@ namespace MallornRestaurantManagerApi.Services
         public async Task<User?> GetAsync(string id) =>
             await _usersCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
+        public async Task<bool> FindByNameAsync(string name) => await _usersCollection.Find(x => x.UserName == name).AnyAsync();
+
+        public async Task<User?> GetByNameAsync(string name) => await _usersCollection.Find(x => x.UserName == name).SingleOrDefaultAsync();
+
         public async Task CreateAsync(User newUser) => await _usersCollection.InsertOneAsync(newUser);
 
         public async Task RemoveAsync(string id) =>

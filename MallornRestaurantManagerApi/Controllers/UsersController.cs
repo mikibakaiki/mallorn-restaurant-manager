@@ -1,5 +1,6 @@
 using MallornRestaurantManagerApi.Models;
 using MallornRestaurantManagerApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MallornRestaurantManagerApi.Controllers
@@ -13,10 +14,12 @@ namespace MallornRestaurantManagerApi.Controllers
         public UsersController(UsersService usersService) =>
             _usersService = usersService;
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<List<User>> Get() =>
-            await _usersService.GetAsync();
+                await _usersService.GetAsync();
 
+        [Authorize]
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<User>> Get(string id)
         {
@@ -28,18 +31,6 @@ namespace MallornRestaurantManagerApi.Controllers
             }
 
             return user;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Post(User newUser)
-        {
-            if (newUser.UserName == null || newUser.UserName == "")
-            {
-                return BadRequest();
-            }
-            await _usersService.CreateAsync(newUser);
-
-            return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
         }
 
         [HttpDelete("{id:length(24)}")]
