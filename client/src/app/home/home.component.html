@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <div style="text-align: center" *ngIf="!registerMode">
+    <h1>Mallorn Restaurant Randomizer</h1>
+    <p>Para almoços e jantares não cansados</p>
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg mr-2" (click)="registerToggle()">
+        Registar
+      </button>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="registerMode">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <app-register
+          [restaurants]="this.restaurants"
+          (cancelRegister)="cancelRegisterMode($event)"
+        ></app-register>
+      </div>
+    </div>
+  </div>
+</div>

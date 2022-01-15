@@ -38,8 +38,8 @@ namespace API
             // custom identity services
             services.AddIdentityServices(Configuration);
 
-            services.AddControllers().AddJsonOptions(
-                options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+            services.AddControllers();/* .AddJsonOptions(
+                options => options.JsonSerializerOptions.PropertyNamingPolicy = null); */
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIv5", Version = "v1" });

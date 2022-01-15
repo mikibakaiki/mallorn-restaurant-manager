@@ -25,7 +25,7 @@ namespace MallornRestaurantManagerApi.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            var userExists = await _usersService.FindByNameAsync(registerDto.UserName);
+            var userExists = await _usersService.FindByNameAsync(registerDto.Username);
 
             if (userExists)
             {
@@ -36,7 +36,7 @@ namespace MallornRestaurantManagerApi.Controllers
 
             var user = new User()
             {
-                UserName = registerDto.UserName,
+                UserName = registerDto.Username,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
             };
@@ -45,7 +45,7 @@ namespace MallornRestaurantManagerApi.Controllers
 
             return new UserDto
             {
-                UserName = user.UserName,
+                Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };
         }
@@ -53,7 +53,7 @@ namespace MallornRestaurantManagerApi.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
-            var user = await _usersService.GetByNameAsync(loginDto.UserName);
+            var user = await _usersService.GetByNameAsync(loginDto.Username);
 
             if (user == null) return Unauthorized("Invalid username");
 
@@ -69,7 +69,7 @@ namespace MallornRestaurantManagerApi.Controllers
 
             return new UserDto
             {
-                UserName = user.UserName,
+                Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
             }; ;
         }
