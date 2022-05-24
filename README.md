@@ -17,3 +17,5 @@ Basic setup based on [this tutorial](https://docs.microsoft.com/en-us/aspnet/cor
 5. Create a collection named `Users`
 
 6. Follow this [this tutorial's](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-6.0&tabs=visual-studio) installation guide.
+
+More coming soon
